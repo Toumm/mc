@@ -83,6 +83,14 @@
 	    		alert("deviceReady");
 	            deviceReady = true;
 	            console.log("Device="+device.platform+" "+device.version);
+	            $.ajax( {
+		            type: "GET",
+		            url: "Fichier.xml",
+		            dataType: "xml",
+		            success: function(xml) {
+			            parseMetar(xml);
+		            }
+			    });       
 	        }, false);
 	    window.setTimeout(function() {
 	    	if (!deviceReady) {
@@ -91,6 +99,12 @@
 	    },1000);
 	 });
     function parseMetar(data){
+    	xmlDoc = $.parseXML(data);
+    	xml = $(xmlDoc);
+    	metars = xml.find("METAR");
+    	metar = metars[0];
+    	alert(metar);
+    	$("#station_id").html(metar.find("station_id").text());
     }
 </script>
 
