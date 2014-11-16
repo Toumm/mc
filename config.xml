@@ -9,7 +9,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <access origin="https://ssl11.ovh.net" />
+    <access origin="https://www.aviationweather.gov/" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="true" />
     <!--
