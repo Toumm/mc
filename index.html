@@ -101,7 +101,7 @@
 	    },1000);
 	 });
     function parseMetar(data){
-    	alert("get success");
+    	alert(data);
     	var metarOne = $(data).find("METAR")[0];
 		$("#station_id").html($(metarOne).find("station_id").html());
     }
