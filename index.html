@@ -95,6 +95,7 @@
     }
     
     function parseMetar(data){
+    	alert(data);
 		xmldoc = $.parseXml(data);
 		xml = $(xmlDoc);
 		data = xml.find("data");
