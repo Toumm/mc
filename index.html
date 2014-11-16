@@ -77,36 +77,25 @@
         document.getElementById('compass_status').innerHTML = status;
     };
     
-    /**
-     * Function called when page has finished loading.
-     */
-    function init() {
-    			var xmlData = $.get("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1", parseMetar(data));
-    			
-        document.addEventListener("deviceready", function() {
-                deviceReady = true;
-                console.log("Device="+device.platform+" "+device.version);
-            }, false);
-        window.setTimeout(function() {
-        	if (!deviceReady) {
-        		alert("Error: Apache Cordova did not initialize.  Demo will not run correctly.");
-        	}
-        },1000);
-    }
-    
+    $(document).ready(function(){
+    	alert("jquery ready");
+	    document.addEventListener("deviceready", function() {
+	    		alert("deviceReady");
+	            deviceReady = true;
+	            console.log("Device="+device.platform+" "+device.version);
+	        }, false);
+	    window.setTimeout(function() {
+	    	if (!deviceReady) {
+	    		alert("Error: Apache Cordova did not initialize.  Demo will not run correctly.");
+	    	}
+	    },1000);
+	 });
     function parseMetar(data){
-    	alert(data);
-		xmldoc = $.parseXml(data);
-		xml = $(xmlDoc);
-		data = xml.find("data");
-		metars = data.find("metar");
-		metar = metars[0];
-		$("#station_id").html(metar.find("station_id"));
     }
 </script>
 
   </head>
-  <body onload="init();" id="stage" class="theme">
+  <body id="stage" class="theme">
   
     <h1>Compass</h1>
     <div id="info">
