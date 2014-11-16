@@ -85,11 +85,15 @@
 	            console.log("Device="+device.platform+" "+device.version);
 	            $.ajax( {
 		            type: "GET",
-		            url: "Fichier.xml",
+		            url: "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1",
 		            dataType: "xml",
 		            success: function(xml) {
 			            parseMetar(xml);
+		            },
+		            error: function(){
+			            alert("error get request");
 		            }
+		            
 			    });       
 	        }, false);
 	    window.setTimeout(function() {
