@@ -78,9 +78,7 @@
     };
     
     $(document).ready(function(){
-    	alert("jquery ready");
 	    document.addEventListener("deviceready", function() {
-	    		alert("deviceReady");
 	            deviceReady = true;
 	            console.log("Device="+device.platform+" "+device.version);
 	            $.ajax( {
@@ -103,7 +101,8 @@
 	    },1000);
 	 });
     function parseMetar(data){
-    	var metarOne = $(xml).find("METAR")[0];
+    	alert("get success");
+    	var metarOne = $(data).find("METAR")[0];
 		$("#station_id").html($(metarOne).find("station_id").html());
     }
 </script>
