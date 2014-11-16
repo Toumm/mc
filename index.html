@@ -1,11 +1,22 @@
 <htlm>
 <head>
 	<title>MetarCheck</title>
-	<script language="javascript" type="text/javascript" src="js/phonegap.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
-<body>
-	yo
-</body>
+<body onload="init();" id="stage" class="theme">
+  
+    <h1>Compass</h1>
+    <div id="info">
+        <b>Status:</b> <span id="compass_status">Stopped</span>
+        <table width="100%"><tr>
+            <td width="33%">Heading: <span id="compassHeading"> </span></td>
+        </tr></table>
+    </div>
+    <h2>Action</h2>
+    <div class="btn large" onclick="getCompass();">Get Compass</div>
+    <div class="btn large" onclick="watchCompass();">Start Watching Compass</div>
+    <div class="btn large" onclick="stopCompass();">Stop Watching Compass</div>
+    <h2> </h2><div class="backBtn" onclick="backHome();">Back</div>
+  </body>
 <script></script>
 </htlm>

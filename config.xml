@@ -9,7 +9,6 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <access origin="https://ssl11.ovh.net" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="true" />
     <!--
@@ -38,6 +37,7 @@
 	<gap:plugin name="org.apache.cordova.device" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
 	<gap:plugin name="com.phonegap.plugin.statusbar" />
+	<gap:plugin name="org.apache.cordova.device-orientation" version="0.3.1" />
 	
 	<preference name="StatusBarOverlaysWebView" value="false" />
 </widget>
