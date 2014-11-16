@@ -81,7 +81,8 @@
      * Function called when page has finished loading.
      */
     function init() {
-                $(".metarCont").load("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=2");
+    			var xmlData = $.get("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1", parseMetar(data));
+    			
         document.addEventListener("deviceready", function() {
                 deviceReady = true;
                 console.log("Device="+device.platform+" "+device.version);
@@ -91,6 +92,15 @@
         		alert("Error: Apache Cordova did not initialize.  Demo will not run correctly.");
         	}
         },1000);
+    }
+    
+    function parseMetar(data){
+		xmldoc = $.parseXml(data);
+		xml = $(xmlDoc);
+		data = xml.find("data");
+		metars = data.find("metar");
+		metar = metars[0];
+		$("#station_id").html(metar.find("station_id"));
     }
 </script>
 
@@ -109,7 +119,7 @@
     <div class="btn large" onclick="watchCompass();">Start Watching Compass</div>
     <div class="btn large" onclick="stopCompass();">Stop Watching Compass</div>
     <div class="metarCont">
-	    
+	    <div id="station_id"></div>
     </div>
   </body>
 </html> 
