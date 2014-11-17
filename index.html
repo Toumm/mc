@@ -98,12 +98,13 @@
 							}
 							else{
 							m = metarOne;
-							console.log(metarOne);
 								if($(m).find("station_id") === "undefined"){
 									alert("station id est indefini");
+									}
 								else{
-									alert($(m).find("station_id").html());
-									$("#station_id").html($(metarOne).find("station_id").html());
+									var p = $(m).find("station_id");
+									console.log($(p));
+									$("#station_id").html($(p).innerHtml());
 								}
 							}
 						}
