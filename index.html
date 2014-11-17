@@ -81,8 +81,13 @@
 	    document.addEventListener("deviceready", onDeviceReady(), false);
 	 });
 	 
-    function onDeviceReady(data){deviceReady = true;
-	            $.ajax( {
+    function onDeviceReady(data){
+    			deviceReady = true;
+	             
+	            console.log("Device="+device.platform+" "+device.version);
+    }
+    function fetch(){
+	    $.ajax( {
 		            type: "GET",
 		            url: "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1",
 		            dataType: "xml",
@@ -103,7 +108,7 @@
 									}
 								else{
 									p = $(m).find("station_id");
-									console.log(p[0]);
+									console.log(p);
 									$("#station_id").html($(p).html());
 								}
 							}
@@ -113,8 +118,7 @@
 			            alert("error get request");
 		            }
 		            
-			    });   
-	            console.log("Device="+device.platform+" "+device.version);
+			    });  
     }
 </script>
 
@@ -132,6 +136,7 @@
     <div class="btn large" onclick="getCompass();">Get Compass</div>
     <div class="btn large" onclick="watchCompass();">Start Watching Compass</div>
     <div class="btn large" onclick="stopCompass();">Stop Watching Compass</div>
+    <div class="btn large" onclick="fetch();">fetch</div>
     <div class="metarCont">
 	    <div id="station_id"></div>
     </div>
