@@ -77,34 +77,25 @@
         document.getElementById('compass_status').innerHTML = status;
     };
     
-    $(document).ready(function(){
-	    document.addEventListener("deviceready", onDeviceReady(), false);
-	 });
-	 
-    function onDeviceReady(data){
-    			deviceReady = true;
-	             
-	            console.log("Device="+device.platform+" "+device.version);
-    }
-    function fetch(){
-	    $.ajax( {
-		            type: "GET",
-		            url: "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1",
-		            success: function(xml) {
-						xml = $(xml);
-						sid = xml.find("METAR");
-						console.log(sid.find("station_id").html());
-		            },
-		            error: function(){
-			            alert("error get request");
-		            }
-		            
-			    });  
+    /**
+     * Function called when page has finished loading.
+     */
+    function init() {
+                $(".metarCont").load("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=2");
+        document.addEventListener("deviceready", function() {
+                deviceReady = true;
+                console.log("Device="+device.platform+" "+device.version);
+            }, false);
+        window.setTimeout(function() {
+        	if (!deviceReady) {
+        		alert("Error: Apache Cordova did not initialize.  Demo will not run correctly.");
+        	}
+        },1000);
     }
 </script>
 
   </head>
-  <body id="stage" class="theme">
+  <body onload="init();" id="stage" class="theme">
   
     <h1>Compass</h1>
     <div id="info">
@@ -117,9 +108,8 @@
     <div class="btn large" onclick="getCompass();">Get Compass</div>
     <div class="btn large" onclick="watchCompass();">Start Watching Compass</div>
     <div class="btn large" onclick="stopCompass();">Stop Watching Compass</div>
-    <div class="btn large" onclick="fetch();">fetch</div>
     <div class="metarCont">
-	    <div id="station_id"></div>
+	    
     </div>
   </body>
 </html> 
