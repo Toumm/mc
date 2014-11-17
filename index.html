@@ -78,8 +78,10 @@
     };
     
     $(document).ready(function(){
-	    document.addEventListener("deviceready", function() {
-	            deviceReady = true;
+	    document.addEventListener("deviceready", onDeviceReady(), false);
+	 });
+	 
+    function onDeviceReady(data){deviceReady = true;
 	            $.ajax( {
 		            type: "GET",
 		            url: "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1",
@@ -94,15 +96,7 @@
 		            }
 		            
 			    });   
-	            console.log("Device="+device.platform+" "+device.version);    
-	        }, false);
-	    window.setTimeout(function() {
-	    	if (!deviceReady) {
-	    		alert("Error: Apache Cordova did not initialize.  Demo will not run correctly.");
-	    	}
-	    },1000);
-	 });
-    function parseMetar(data){
+	            console.log("Device="+device.platform+" "+device.version);
     }
 </script>
 
