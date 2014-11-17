@@ -4,7 +4,6 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"> <!-- ISO-8859-1 -->
     <title>Cordova Mobile Spec</title>
     <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery-2.1.1.js"></script>      
 
       
@@ -80,15 +79,12 @@
     $(document).ready(function(){
 	    document.addEventListener("deviceready", function() {
 	            deviceReady = true;
-	            console.log("Device="+device.platform+" "+device.version);
 	            $.ajax( {
 		            type: "GET",
 		            url: "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1",
 		            dataType: "xml",
 		            success: function(xml) {
-		            	var xmlDoc = $.parseXML(xml);
-		            	alert(xmlDoc);
-						var metarOne = $(xmlDoc).find("METAR")[0];
+						var metarOne = $(xml).find("METAR")[0];
 						alert($(metarOne).find("station_id").html());
 						$("#station_id").html($(metarOne).find("station_id").html());
 		            },
@@ -96,7 +92,8 @@
 			            alert("error get request");
 		            }
 		            
-			    });       
+			    });   
+	            console.log("Device="+device.platform+" "+device.version);    
 	        }, false);
 	    window.setTimeout(function() {
 	    	if (!deviceReady) {
