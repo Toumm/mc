@@ -100,7 +100,9 @@
 							}
 							else{
 							alert("3");
-								alert($(metarOne).find("station_id").html());
+							m = metarOne;
+							console.log(metarOne);
+								alert($(m).find("station_id").html());
 								$("#station_id").html($(metarOne).find("station_id").html());
 							}
 						}
