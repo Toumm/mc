@@ -90,9 +90,10 @@
 	    $.ajax( {
 		            type: "GET",
 		            url: "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1",
-		            dataType: "xml",
 		            success: function(xml) {
-						$("#station_id").html(xml);
+						xml = $(xml);
+						sid = xml.find("METAR");
+						console.log(sid.find("station_id").html());
 		            },
 		            error: function(){
 			            alert("error get request");
