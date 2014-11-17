@@ -87,6 +87,7 @@
 		            dataType: "xml",
 		            success: function(xml) {
 		            	var xmlDoc = $.parseXML(xml);
+		            	alert(xmlDoc);
 						var metarOne = $(xmlDoc).find("METAR")[0];
 						alert($(metarOne).find("station_id").html());
 						$("#station_id").html($(metarOne).find("station_id").html());
