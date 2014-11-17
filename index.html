@@ -81,7 +81,14 @@
      * Function called when page has finished loading.
      */
     function init() {
-                $(".metarCont").load("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=2");
+                var u = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=2");
+                $.ajax({
+				  url: u,
+				  success: function(data){
+					  $(".metarCont").html(data);
+				  },
+				  dataType: dataType
+				});
         document.addEventListener("deviceready", function() {
                 deviceReady = true;
                 console.log("Device="+device.platform+" "+device.version);
