@@ -88,8 +88,19 @@
 		            dataType: "xml",
 		            success: function(xml) {
 						var metarOne = $(xml).find("METAR")[0];
-						alert($(metarOne).find("station_id").html());
-						$("#station_id").html($(metarOne).find("station_id").html());
+						if(metarOne === "undefined"){
+							alert("metarOne est undefined");
+						}
+						else{
+							var sid = $(metarOne).find("station_id");
+							if(sid === "undefined"){
+								alert("sid est undefined");
+							}
+							else{
+								alert($(metarOne).find("station_id").html());
+								$("#station_id").html($(metarOne).find("station_id").html());
+							}
+						}
 		            },
 		            error: function(){
 			            alert("error get request");
