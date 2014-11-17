@@ -87,23 +87,24 @@
 		            url: "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=ebci&hoursBeforeNow=1",
 		            dataType: "xml",
 		            success: function(xml) {
-		            alert("1");
 						var metarOne = $(xml).find("METAR")[0];
 						if(metarOne === "undefined"){
 							alert("metarOne est undefined");
 						}
 						else{
-						alert("2");
 							var sid = $(metarOne).find("station_id");
 							if(sid === "undefined"){
 								alert("sid est undefined");
 							}
 							else{
-							alert("3");
 							m = metarOne;
 							console.log(metarOne);
-								alert($(m).find("station_id").html());
-								$("#station_id").html($(metarOne).find("station_id").html());
+								if($(m).find("station_id") === "undefined"){
+									alert("station id est indefini");
+								else{
+									alert($(m).find("station_id").html());
+									$("#station_id").html($(metarOne).find("station_id").html());
+								}
 							}
 						}
 		            },
